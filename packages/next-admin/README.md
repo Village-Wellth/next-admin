@@ -23,6 +23,15 @@ The `search` field type recursed 4 levels deep into Prisma relations, generating
 
 ## Installation
 
+Ensure your project's `.npmrc` has the GitHub Packages registry for the `@village-wellth` scope:
+
+```
+@village-wellth:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Then install:
+
 ```bash
 npm install @village-wellth/next-admin @village-wellth/next-admin-generator-prisma
 ```
@@ -148,7 +157,7 @@ apps/
 
 ### Publishing a new version
 
-This repo uses [changesets](https://github.com/changesets/changesets) for versioning and publishing to npmjs.com.
+This repo uses [changesets](https://github.com/changesets/changesets) for versioning and publishing to [GitHub Packages](https://github.com/orgs/Village-Wellth/packages).
 
 1. Make your changes
 2. Create a changeset:
@@ -159,11 +168,18 @@ This repo uses [changesets](https://github.com/changesets/changesets) for versio
 
 3. Commit and push to `main`
 4. The GitHub Action will create a "Version Packages" PR
-5. Merge that PR to publish to npm
+5. Merge that PR to publish to GitHub Packages
 
 **Requirements:**
-- `NPM_TOKEN` secret must be set in the GitHub repo (Settings > Secrets > Actions)
-- The token must have read/write access to the `village-wellth` npm organization
+- The `GITHUB_TOKEN` secret (automatically provided by GitHub Actions) handles authentication
+- No additional secrets are needed for publishing to GitHub Packages
+
+**Installing in your project:**
+Your project's `.npmrc` must include:
+```
+@village-wellth:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
 
 ### CI / E2E Tests
 

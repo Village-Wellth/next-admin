@@ -2,7 +2,8 @@
   "name": "@village-wellth/next-admin-generator-prisma",
   "version": "1.1.1",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "description": "Prisma generator for Next-Admin",
   "bin": "dist/index.js",
