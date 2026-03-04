@@ -730,7 +730,7 @@ const applyIncludes = (
     const nestedIncludes =
       typeof inc === "object" ? inc.includes : undefined;
 
-    const meta = properties[fieldName]?.__nextadmin;
+    const meta = (properties as Record<string, any>)[fieldName]?.__nextadmin;
     if (meta?.kind === "object") {
       const subSelect = selectPayloadForModel(
         meta.type as ModelName,
