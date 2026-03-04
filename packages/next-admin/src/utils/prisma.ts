@@ -5,6 +5,7 @@ import type {
   EditOptions,
   Enumeration,
   Field,
+  FieldInclude,
   Filter,
   FilterWrapper,
   ListOptions,
@@ -712,6 +713,44 @@ const isVirtualField = <M extends ModelName>(
   return typeof displayOpts === "object" && "dependsOn" in displayOpts;
 };
 
+/**
+ * Recursively applies `includes` to a select payload, adding specified
+ * sub-relations (and their scalar fields) to the select object.
+ */
+const applyIncludes = (
+  select: Record<string, any>,
+  modelName: ModelName,
+  includes: FieldInclude[]
+) => {
+  const model = getSchema().definitions[modelName] as SchemaDefinitions[ModelName];
+  const properties = model.properties;
+
+  for (const inc of includes) {
+    const fieldName = typeof inc === "string" ? inc : inc.field;
+    const nestedIncludes =
+      typeof inc === "object" ? inc.includes : undefined;
+
+    const meta = properties[fieldName]?.__nextadmin;
+    if (meta?.kind === "object") {
+      const subSelect = selectPayloadForModel(
+        meta.type as ModelName,
+        {},
+        "scalar"
+      );
+
+      // Recursively apply deeper includes
+      if (nestedIncludes && nestedIncludes.length > 0) {
+        applyIncludes(subSelect, meta.type as ModelName, nestedIncludes);
+      }
+
+      select[fieldName] =
+        Object.keys(subSelect).length === 0
+          ? true
+          : { select: subSelect };
+    }
+  }
+};
+
 export const selectPayloadForModel = <M extends ModelName>(
   resource: M,
   options?: EditOptions<M> | ListOptions<M>,
@@ -762,13 +801,31 @@ export const selectPayloadForModel = <M extends ModelName>(
               },
             };
           }
-          acc[name] = {
-            select: selectPayloadForModel(
-              fieldNextAdmin.type as ModelName,
-              {},
-              "scalar"
-            ),
-          };
+          const nestedSelect = selectPayloadForModel(
+            fieldNextAdmin.type as ModelName,
+            {},
+            "scalar"
+          );
+
+          // Check if field options specify sub-relations to include
+          const fieldOpts =
+            (options as ListOptions<M>)?.fields?.[name as Field<M>] ??
+            (options as EditOptions<M>)?.fields?.[name as Field<M>];
+          const includes: FieldInclude[] | undefined = (fieldOpts as any)
+            ?.includes;
+
+          if (includes && includes.length > 0) {
+            applyIncludes(nestedSelect, fieldNextAdmin.type as ModelName, includes);
+          }
+
+          // If the nested model has no scalar fields in the schema
+          // (e.g. join tables with only relation fields), fall back
+          // to selecting all fields to avoid an empty select error.
+          if (Object.keys(nestedSelect).length === 0) {
+            acc[name] = true;
+          } else {
+            acc[name] = { select: nestedSelect };
+          }
 
           const orderField =
             (options as EditOptions<M>)?.fields?.[
@@ -776,7 +833,7 @@ export const selectPayloadForModel = <M extends ModelName>(
               // @ts-expect-error
             ]?.orderField || (options as ListOptions<M>)?.orderField;
 
-          if (orderField) {
+          if (orderField && typeof acc[name] === "object") {
             acc[name].orderBy = {
               [orderField]: "asc",
             };

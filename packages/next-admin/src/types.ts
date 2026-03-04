@@ -157,6 +157,17 @@ export type Field<P extends ModelName> = keyof Model<P>;
 
 /** Type for Options */
 
+/**
+ * Specifies which sub-relations to include when loading a relation field.
+ * Can be a simple field name (string) or an object with nested includes.
+ *
+ * @example
+ * ```ts
+ * includes: ["buyer", { field: "listing", includes: ["user"] }]
+ * ```
+ */
+export type FieldInclude = string | { field: string; includes: FieldInclude[] };
+
 export type ListFieldsOptions<T extends ModelName> = {
   [P in Field<T>]?: {
     /**
@@ -179,6 +190,21 @@ export type ListFieldsOptions<T extends ModelName> = {
          * The field to use for relationship sorting, defaults to the id field
          */
         sortBy?: keyof ModelFromProperty<T, P>;
+        /**
+         * An array of relation field names to include when loading this relation.
+         * Only scalar fields of each included sub-relation are loaded.
+         * Use this when your formatter needs data from nested relations.
+         *
+         * @example
+         * ```ts
+         * // Simple: load buyer and listing scalars
+         * includes: ["buyer", "listing"]
+         *
+         * // Deep: load listing and its user sub-relation
+         * includes: ["buyer", { field: "listing", includes: ["user"] }]
+         * ```
+         */
+        includes?: FieldInclude[];
       }
     : {});
 };
@@ -293,8 +319,13 @@ export type EditFieldsOptions<T extends ModelName> = {
     visible?: (value: ModelWithoutRelationships<T>) => boolean;
     maxLength?: Model<T>[P] extends ScalarArray ? number : never;
   } & (P extends keyof ObjectField<T>
-    ? OptionFormatterFromRelationshipSearch<T, P> &
-        (
+    ? OptionFormatterFromRelationshipSearch<T, P> & {
+        /**
+         * An array of relation field names to include when loading this relation.
+         * Only scalar fields of each included sub-relation are loaded.
+         */
+        includes?: FieldInclude[];
+      } & (
           | {
               /**
                * Property to indicate how to display the multi select widget :

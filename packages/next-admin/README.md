@@ -1,25 +1,12 @@
 # @village-wellth/next-admin
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/npm/v/@village-wellth/next-admin/latest)](https://www.npmjs.com/package/@village-wellth/next-admin)
 
 Village Wellth's fork of [`@premieroctet/next-admin`](https://github.com/premieroctet/next-admin) — a customizable admin dashboard for Next.js applications powered by Prisma ORM.
 
 ## Why This Fork?
 
-This fork addresses critical issues found in the upstream package:
-
-### Performance Fix: Eager Loading of Sub-Relations
-When a relation field (e.g., `location`) is added to the `display` array, the upstream version loads **all nested relations** of that model (e.g., `deal[]`, `buyerProfile[]`, `sellerListing[]`), even when only scalar fields are needed. This causes:
-- Slow list queries with large datasets
-- **Vercel Runtime OOM crashes** on edit views
-
-**Fix:** Only scalar fields of related models are selected in Prisma queries.
-
-### TypeScript Fix: Search Type Union Too Complex (ts2590)
-The `search` field type recursed 4 levels deep into Prisma relations, generating 100K+ union type members with large schemas. This caused `ts(2590): Expression produces a union type that is too complex to represent`.
-
-**Fix:** Reduced search type recursion depth to 2 levels (supports `"user.name"`, `"user.email"` patterns).
+The upstream package has critical performance and TypeScript issues that remain unresolved. This fork fixes them and adds features we need. See [Changes from Upstream](#changes-from-upstream) for details.
 
 ## Installation
 
@@ -100,6 +87,69 @@ import { createHandler } from "@village-wellth/next-admin/appHandler";
 
 For full setup details, refer to the [upstream documentation](https://next-admin.js.org).
 
+---
+
+## Changes from Upstream
+
+### Fix: Eager Loading of Sub-Relations (Performance)
+
+**Problem:** When a relation field (e.g., `location`) is in the `display` array, the upstream version loads **all nested relations** of that model (e.g., `deal[]`, `buyerProfile[]`, `sellerListing[]`), even when only scalar fields are needed. This causes slow list queries and **Vercel Runtime OOM crashes**.
+
+**Fix:** Only scalar fields of related models are selected in Prisma queries. If you need specific sub-relation data for a formatter, use the [`includes` option](#feature-includes-option-for-relation-fields).
+
+### Fix: Search Type Union Too Complex (ts2590)
+
+**Problem:** The `search` field type recursed 4 levels deep into Prisma relations, generating 100K+ union type members with large schemas. This caused `ts(2590): Expression produces a union type that is too complex to represent`.
+
+**Fix:** Reduced search type recursion depth to 2 levels (supports `"user.name"`, `"user.email"` patterns).
+
+### Feature: `includes` Option for Relation Fields
+
+After the performance fix above, relation fields in `display` only load their scalar fields. If your `formatter` needs data from nested sub-relations (e.g., `dealOpportunity.buyer.name`), use `includes` to declare exactly which sub-relations to load.
+
+**Basic usage** — load scalar fields of specified sub-relations:
+
+```typescript
+Chat: {
+  list: {
+    display: ["dealOpportunity", "buyer", "createdAt"],
+    fields: {
+      dealOpportunity: {
+        formatter: (value) => `${value.buyer.name} - ${value.listing.title}`,
+        includes: ["buyer", "listing"],
+      },
+    },
+  },
+}
+```
+
+**Deep includes** — load sub-relations of sub-relations:
+
+```typescript
+DealOpportunity: {
+  list: {
+    display: ["buyer", "listing", "status", "createdAt"],
+    fields: {
+      listing: {
+        formatter: (value) => `${value.user.name} - ${value.title}`,
+        includes: [{ field: "listing", includes: ["user"] }],
+      },
+    },
+  },
+}
+```
+
+The `includes` option is available in both `list.fields` and `edit.fields`. If no `includes` is specified, only scalar fields are loaded (backward compatible).
+
+### Key Files Modified
+
+| File | What changed |
+|------|-------------|
+| `packages/next-admin/src/utils/prisma.ts` | Performance fix + `includes` implementation |
+| `packages/next-admin/src/types.ts` | Search type depth fix + `FieldInclude` type + `includes` on field options |
+
+---
+
 ## Development (Contributing to this fork)
 
 ### Prerequisites
@@ -173,13 +223,6 @@ This repo uses [changesets](https://github.com/changesets/changesets) for versio
 **Requirements:**
 - The `GITHUB_TOKEN` secret (automatically provided by GitHub Actions) handles authentication
 - No additional secrets are needed for publishing to GitHub Packages
-
-**Installing in your project:**
-Your project's `.npmrc` must include:
-```
-@village-wellth:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
 
 ### CI / E2E Tests
 
