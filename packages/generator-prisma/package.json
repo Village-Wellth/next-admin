@@ -1,6 +1,6 @@
 {
   "name": "@village-wellth/next-admin-generator-prisma",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publishConfig": {
     "access": "public"
   },
