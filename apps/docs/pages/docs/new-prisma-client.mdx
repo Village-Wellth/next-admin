@@ -26,10 +26,10 @@ const nextAdminProps = await getNextAdminProps({
   });
 ```
 
-To fix this, you will need to cast the Prisma instance to the `PrismaClient` type imported from `@premieroctet/next-admin`.
+To fix this, you will need to cast the Prisma instance to the `PrismaClient` type imported from `@village-wellth/next-admin`.
 
 ```tsx
-import type { PrismaClient } from "@premieroctet/next-admin";
+import type { PrismaClient } from "@village-wellth/next-admin";
 import prisma from "./my-prisma-instance"
 
 const nextAdminProps = await getNextAdminProps({

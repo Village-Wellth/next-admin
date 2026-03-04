@@ -1,9 +1,9 @@
 import { options } from "@/options";
 import { prisma } from "@/prisma";
-import type { PromisePageProps, PrismaClient } from "@premieroctet/next-admin";
-import { NextAdmin } from "@premieroctet/next-admin/adapters/next";
-import { getNextAdminProps } from "@premieroctet/next-admin/appRouter";
-import PageLoader from "@premieroctet/next-admin/pageLoader";
+import type { PromisePageProps, PrismaClient } from "@village-wellth/next-admin";
+import { NextAdmin } from "@village-wellth/next-admin/adapters/next";
+import { getNextAdminProps } from "@village-wellth/next-admin/appRouter";
+import PageLoader from "@village-wellth/next-admin/pageLoader";
 import { Dashboard } from "examples-common/components";
 import { Metadata, Viewport } from "next";
 import { getMessages } from "next-intl/server";

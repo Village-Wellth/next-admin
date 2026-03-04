@@ -14,7 +14,7 @@ import {
 generatorHandler({
   onManifest: () => {
     return {
-      defaultOutput: path.dirname(require.resolve("@premieroctet/next-admin")),
+      defaultOutput: path.dirname(require.resolve("@village-wellth/next-admin")),
       prettyName: "Next Admin JSON Schema Generator",
     };
   },

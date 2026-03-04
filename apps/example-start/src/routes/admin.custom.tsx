@@ -1,5 +1,5 @@
-import { MainLayoutProps } from "@premieroctet/next-admin";
-import { MainLayout } from "@premieroctet/next-admin/adapters/tanstack-router";
+import { MainLayoutProps } from "@village-wellth/next-admin";
+import { MainLayout } from "@village-wellth/next-admin/adapters/tanstack-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { CustomPage } from "examples-common/components";
 import { getNextAdminCustomPageFn } from "../functions/nextadmin";

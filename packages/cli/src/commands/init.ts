@@ -88,13 +88,13 @@ export const initAction = async ({
     await execa(
       packageManagerData.name,
       parseCommandString(
-        `${packageManagerData.installCmd} @premieroctet/next-admin`
+        `${packageManagerData.installCmd} @village-wellth/next-admin`
       )
     );
     await execa(
       packageManagerData.name,
       parseCommandString(
-        `${packageManagerData.installDevCmd} @premieroctet/next-admin-generator-prisma tailwindcss`
+        `${packageManagerData.installDevCmd} @village-wellth/next-admin-generator-prisma tailwindcss`
       )
     );
   } catch (e) {
@@ -291,7 +291,7 @@ experimental: {
     extraInstructions = `You will need to do the following manually:
 - ${usesBabel ? `${packageManagerData.name} ${packageManagerData.installDevCmd} babel-plugin-superjson-next superjson@^1` : `${packageManagerData.name} ${packageManagerData.installDevCmd} next-superjson-plugin superjson`}
 - ${superjsonInstructions}
-- Add "@premieroctet/next-admin" to your transpilePackages array in the Next.js configuration file
+- Add "@village-wellth/next-admin" to your transpilePackages array in the Next.js configuration file
 `;
   }
 

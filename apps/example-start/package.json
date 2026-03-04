@@ -9,7 +9,7 @@
     "clean": "rm -rf .output .vinxi"
   },
   "dependencies": {
-    "@premieroctet/next-admin": "workspace:*",
+    "@village-wellth/next-admin": "workspace:*",
     "@prisma/client": "catalog:prisma",
     "@tanstack/react-router": "catalog:tanstack-start",
     "@tanstack/react-router-devtools": "catalog:tanstack-start",

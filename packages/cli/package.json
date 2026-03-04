@@ -1,6 +1,9 @@
 {
-  "name": "@premieroctet/next-admin-cli",
+  "name": "@village-wellth/next-admin-cli",
   "version": "0.0.9",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "CLI for Next-Admin, an admin dashboard for Next.js applications.",
   "bin": "dist/index.js",
   "keywords": [
@@ -13,16 +16,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/premieroctet/next-admin.git",
+    "url": "https://github.com/Village-Wellth/next-admin.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/premieroctet/next-admin/issues"
+    "url": "https://github.com/Village-Wellth/next-admin/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/premieroctet/next-admin/blob/main/LICENSE"
+      "url": "https://github.com/Village-Wellth/next-admin/blob/main/LICENSE"
     }
   ],
   "scripts": {

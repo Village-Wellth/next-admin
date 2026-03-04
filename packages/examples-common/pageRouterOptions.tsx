@@ -1,4 +1,4 @@
-import { NextAdminOptions } from "@premieroctet/next-admin";
+import { NextAdminOptions } from "@village-wellth/next-admin";
 
 export const pageRouterOptions: NextAdminOptions = {
   title: "⚡️ My Admin Page Router",

@@ -10,7 +10,7 @@
     "clean": "rm -rf ./build"
   },
   "dependencies": {
-    "@premieroctet/next-admin": "workspace:*",
+    "@village-wellth/next-admin": "workspace:*",
     "@remix-run/node": "catalog:remix",
     "@remix-run/react": "catalog:remix",
     "@remix-run/serve": "catalog:remix",

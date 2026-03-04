@@ -1,4 +1,4 @@
-import type { NextAdminJsonSchemaData } from "@premieroctet/next-admin-json-schema";
+import type { NextAdminJsonSchemaData } from "@village-wellth/next-admin-json-schema";
 import cloneDeep from "lodash.clonedeep";
 import { ITEMS_PER_PAGE } from "../config";
 import type {
@@ -781,7 +781,7 @@ export const selectPayloadForModel = <M extends ModelName>(
               [orderField]: "asc",
             };
           }
-        } else {
+        } else if (fieldNextAdmin?.kind !== "object") {
           acc[name] = true;
         }
       }

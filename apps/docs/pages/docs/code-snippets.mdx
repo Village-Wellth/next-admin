@@ -8,7 +8,7 @@ import { Callout, Tabs } from "nextra/components";
 
 This page contains code snippets that you can use in your projects. These are not a part of Next Admin, but may be useful for your projects.
 
-Some of the snippets are implemented in the example project. You can check them out in the [example project](https://next-admin-po.vercel.app) or in the [source code](https://github.com/premieroctet/next-admin/tree/main/apps/example).
+Some of the snippets are implemented in the example project. You can check them out in the [example project](https://next-admin-po.vercel.app) or in the [source code](https://github.com/Village-Wellth/next-admin/tree/main/apps/example).
 
 ## Authentication
 
@@ -201,8 +201,8 @@ export async function GET() {
 
 There are two example files in the example project:
 
-- [app/api/users/export/route.ts](https://github.com/premieroctet/next-admin/tree/main/apps/example/app/api/users/export/route.ts)
-- [app/api/posts/export/route.ts](https://github.com/premieroctet/next-admin/tree/main/apps/example/app/api/posts/export/route.ts)
+- [app/api/users/export/route.ts](https://github.com/Village-Wellth/next-admin/tree/main/apps/example/app/api/users/export/route.ts)
+- [app/api/posts/export/route.ts](https://github.com/Village-Wellth/next-admin/tree/main/apps/example/app/api/posts/export/route.ts)
 
 ## Intercepting data submission
 
@@ -256,7 +256,7 @@ If you want to customize the input form, you can create a custom input component
 
 ```typescript copy filename="app/components/inputs/BirthDateInput.tsx"
 "use client";
-import { CustomInputProps } from "@premieroctet/next-admin";
+import { CustomInputProps } from "@village-wellth/next-admin";
 import DateTimePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -295,7 +295,7 @@ The `CustomInputProps` type is provided by Next Admin.
 
 You can find an example of this component in the example project:
 
-- [app/components/inputs/DatePicker.tsx](https://github.com/premieroctet/next-admin/blob/main/apps/example/components/DatePicker.tsx)
+- [app/components/inputs/DatePicker.tsx](https://github.com/Village-Wellth/next-admin/blob/main/apps/example/components/DatePicker.tsx)
 
 # Explicit many-to-many
 
@@ -369,8 +369,8 @@ You can create custom pages in the Next Admin UI. By reusing the `MainLayout` co
 
 ```typescript copy filename="app/custom/page.tsx"
 
-import { MainLayout } from "@premieroctet/next-admin";
-import { getMainLayoutProps } from "@premieroctet/next-admin/appRouter";
+import { MainLayout } from "@village-wellth/next-admin";
+import { getMainLayoutProps } from "@village-wellth/next-admin/appRouter";
 import { options } from "@/options";
 import { prisma } from "@/prisma";
 

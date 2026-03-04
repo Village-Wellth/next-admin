@@ -1,147 +1,196 @@
-# Next Admin
+# @village-wellth/next-admin
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/npm/v/@premieroctet/next-admin/latest)](https://www.npmjs.com/package/@premieroctet/next-admin)
+[![Version](https://img.shields.io/npm/v/@village-wellth/next-admin/latest)](https://www.npmjs.com/package/@village-wellth/next-admin)
 
-`next-admin` provides a customizable and turnkey admin dashboard for applications built with Next.js and powered by the Prisma ORM. It aims to simplify the development process by providing a turnkey admin system that can be easily integrated into your project.
+Village Wellth's fork of [`@premieroctet/next-admin`](https://github.com/premieroctet/next-admin) — a customizable admin dashboard for Next.js applications powered by Prisma ORM.
 
-<div align="center" style="display:flex;flex-direction:column;">
-  <a href="https://next-admin.js.org">
-    <img src="https://next-admin.js.org/screenshot.png" alt="Next Admin" />
-  </a>
-</div>
+## Why This Fork?
 
-[https://next-admin.js.org](https://next-admin.js.org)
+This fork addresses critical issues found in the upstream package:
 
-## Features
+### Performance Fix: Eager Loading of Sub-Relations
+When a relation field (e.g., `location`) is added to the `display` array, the upstream version loads **all nested relations** of that model (e.g., `deal[]`, `buyerProfile[]`, `sellerListing[]`), even when only scalar fields are needed. This causes:
+- Slow list queries with large datasets
+- **Vercel Runtime OOM crashes** on edit views
 
-- 💅 Customizable admin dashboard
-- 💽 Database relationships management
-- 👩🏻‍💻 User management (CRUD operations)
-- 🎨 Dashboard widgets and customizable panels
-- ⚛️ Integration with Prisma ORM
-- 👔 Customizable list and form
-- ⚙️ Support for Next.js (App Router and Pages Router), Remix, TanStack Start
-- 🚀 Support for any full stack framework
+**Fix:** Only scalar fields of related models are selected in Prisma queries.
+
+### TypeScript Fix: Search Type Union Too Complex (ts2590)
+The `search` field type recursed 4 levels deep into Prisma relations, generating 100K+ union type members with large schemas. This caused `ts(2590): Expression produces a union type that is too complex to represent`.
+
+**Fix:** Reduced search type recursion depth to 2 levels (supports `"user.name"`, `"user.email"` patterns).
 
 ## Installation
 
-### With the CLI
-
-```shell copy
-npx @premieroctet/next-admin-cli@latest init
+```bash
+npm install @village-wellth/next-admin @village-wellth/next-admin-generator-prisma
 ```
 
-### Manually
+## Packages
 
-To install the library, run the following command:
+| Package | Description |
+|---------|-------------|
+| `@village-wellth/next-admin` | Core admin dashboard library |
+| `@village-wellth/next-admin-generator-prisma` | Prisma generator for schema introspection |
+| `@village-wellth/next-admin-json-schema` | JSON Schema helpers (internal dependency) |
+| `@village-wellth/next-admin-cli` | CLI for scaffolding admin pages |
 
-```shell copy
-yarn add @premieroctet/next-admin @premieroctet/next-admin-generator-prisma
+## Setup Guide
+
+### 1. Install dependencies
+
+```bash
+npm install @village-wellth/next-admin @village-wellth/next-admin-generator-prisma
 ```
 
-## Documentation
+### 2. Add the Prisma generator to your `schema.prisma`
 
-For detailed documentation, please refer to the [documentation](https://next-admin-docs.vercel.app/).
+```prisma
+generator nextAdmin {
+  provider = "next-admin-generator-prisma"
+}
+```
 
-## Usage
+### 3. Generate the schema
 
-To use the library in your Next.js application, follow these steps:
+```bash
+npx prisma generate
+```
 
-1. Add tailwind preset to your `tailwind.config.js` file - [more details](http://next-admin-docs.vercel.app/docs/getting-started#tailwindcss)
-2. Add json schema generator to your Prisma schema file - [more details](http://next-admin-docs.vercel.app/docs/getting-started#prisma)
-3. Generate the schema with `yarn run prisma generate`
-4. Create a catch-all segment page `page.tsx` in the `app/admin/[[...nextadmin]]` folder - [more details](http://next-admin-docs.vercel.app/docs/getting-started#page-nextadmin)
-5. Create an catch-all API route `route.ts` in the `app/api/[[...nextadmin]]` folder - [more details](http://next-admin-docs.vercel.app/docs/getting-started#api-route-nextadmin)
+### 4. Add Tailwind preset
 
-Bonus: Customize the admin dashboard by passing the `NextAdminOptions` options to the router and customize the admin dashboard by passing `dashboard` props to `NextAdmin` component. (More details in the [documentation](http://next-admin-docs.vercel.app/docs/getting-started#next-admin-options---optional))
+In your `tailwind.config.js`:
 
-## What does it look like?
+```js
+const nextAdminPreset = require("@village-wellth/next-admin/preset");
 
-An example of `next-admin` options:
-
-```tsx
-// app/admin/options.ts
-import { NextAdminOptions } from "@premieroctet/next-admin";
-
-export const options: NextAdminOptions = {
-  title: "⚡️ My Admin Page",
-  model: {
-    User: {
-      toString: (user) => `${user.name} (${user.email})`,
-      title: "Users",
-      icon: "UsersIcon",
-      list: {
-        search: ["name", "email"],
-        filters: [
-          {
-            name: "is Admin",
-            active: false,
-            value: {
-              role: {
-                equals: "ADMIN",
-              },
-            },
-          },
-        ],
-      },
-    },
-    Post: {
-      toString: (post) => `${post.title}`,
-    },
-    Category: {
-      title: "Categories",
-      icon: "InboxStackIcon",
-      toString: (category) => `${category.name}`,
-      list: {
-        display: ["name", "posts"],
-      },
-      edit: {
-        display: ["name", "posts"],
-      },
-    },
-  },
-  pages: {
-    "/custom": {
-      title: "Custom page",
-      icon: "AdjustmentsHorizontalIcon",
-    },
-  },
-  externalLinks: [
-    {
-      label: "Website",
-      url: "https://www.myblog.com",
-    },
+module.exports = {
+  content: [
+    // ... your content paths
+    "./node_modules/@village-wellth/next-admin/dist/**/*.{js,ts,jsx,tsx}",
   ],
-  sidebar: {
-    groups: [
-      {
-        title: "Users",
-        models: ["User"],
-      },
-      {
-        title: "Categories",
-        models: ["Category"],
-      },
-    ],
-  },
+  presets: [nextAdminPreset],
 };
 ```
 
-## 📄 Documentation
+### 5. Create the admin page (App Router)
 
-For detailed documentation, please refer to the [documentation](https://next-admin-docs.vercel.app/).
+```tsx
+// app/admin/[[...nextadmin]]/page.tsx
+import { NextAdmin } from "@village-wellth/next-admin/adapters/next";
+import { getNextAdminProps } from "@village-wellth/next-admin/appRouter";
+```
 
-## 🚀 Demonstration
+### 6. Create the API route
 
-You can find the library code in the [next-admin](https://github.com/premieroctet/next-admin) repository.
+```ts
+// app/api/admin/[[...nextadmin]]/route.ts
+import { createHandler } from "@village-wellth/next-admin/appHandler";
+```
 
-Also you can find a deployed version of the library [here](https://next-admin-po.vercel.app/).
+For full setup details, refer to the [upstream documentation](https://next-admin.js.org).
 
-## Sponsors
+## Development (Contributing to this fork)
 
-This project is being developed by [Premier Octet](https://www.premieroctet.com), a Web and mobile agency specializing in React and React Native developments.
+### Prerequisites
+
+- Node.js 20+
+- pnpm 9.12.3+
+
+### Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/Village-Wellth/next-admin.git
+cd next-admin
+
+# Install dependencies
+pnpm install
+
+# Build all packages
+pnpm build:packages
+```
+
+### Project Structure
+
+```
+packages/
+  next-admin/           # Core library (@village-wellth/next-admin)
+  generator-prisma/     # Prisma generator (@village-wellth/next-admin-generator-prisma)
+  json-schema/          # JSON Schema helpers (@village-wellth/next-admin-json-schema)
+  cli/                  # CLI tool (@village-wellth/next-admin-cli)
+  database/             # Example database (internal)
+  examples-common/      # Shared example config (internal)
+apps/
+  example/              # Example Next.js app
+  docs/                 # Documentation site
+```
+
+### Testing locally in your project
+
+1. Build and pack:
+   ```bash
+   pnpm build:packages
+   cd packages/next-admin && pnpm pack
+   cd ../generator-prisma && pnpm pack
+   cd ../json-schema && pnpm pack
+   ```
+
+2. In your project, install the `.tgz` files:
+   ```json
+   "@village-wellth/next-admin": "file:./village-wellth-next-admin-x.x.x.tgz",
+   "@village-wellth/next-admin-generator-prisma": "file:./village-wellth-next-admin-generator-prisma-x.x.x.tgz",
+   "@village-wellth/next-admin-json-schema": "file:./village-wellth-next-admin-json-schema-x.x.x.tgz"
+   ```
+
+3. Run `npm install`
+
+### Publishing a new version
+
+This repo uses [changesets](https://github.com/changesets/changesets) for versioning and publishing to npmjs.com.
+
+1. Make your changes
+2. Create a changeset:
+   ```bash
+   pnpm changeset
+   ```
+   Select the affected packages and bump type (patch/minor/major).
+
+3. Commit and push to `main`
+4. The GitHub Action will create a "Version Packages" PR
+5. Merge that PR to publish to npm
+
+**Requirements:**
+- `NPM_TOKEN` secret must be set in the GitHub repo (Settings > Secrets > Actions)
+- The token must have read/write access to the `village-wellth` npm organization
+
+### CI / E2E Tests
+
+The e2e workflow runs on PRs and pushes to `main`. There is one **known flaky test** inherited from the upstream repo:
+
+```
+e2e/001-crud.spec.ts:16:5 › crud Post › create Post
+```
+
+This test times out intermittently (>30s) waiting for navigation after saving a Post. It is **not related to our changes** — it's a CI environment timing issue. If you see this single test fail while 18+ others pass, it's safe to ignore. All other tests should pass.
+
+### Syncing with upstream
+
+To pull in updates from the original `premieroctet/next-admin`:
+
+```bash
+git remote add upstream https://github.com/premieroctet/next-admin.git
+git fetch upstream
+git merge upstream/main
+```
+
+Resolve any conflicts, especially in files where we've made fixes (`packages/next-admin/src/utils/prisma.ts`, `packages/next-admin/src/types.ts`).
+
+## Upstream Documentation
+
+For general usage, API reference, and configuration options, see the [original next-admin docs](https://next-admin.js.org).
 
 ## License
 
-This library is open source and released under the [MIT License](https://opensource.org/licenses/MIT).
+MIT - Originally created by [Premier Octet](https://www.premieroctet.com).

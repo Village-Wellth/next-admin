@@ -1,5 +1,5 @@
 import defaultColors from "tailwindcss/colors";
-import nextAdminPreset from "@premieroctet/next-admin/preset";
+import nextAdminPreset from "@village-wellth/next-admin/preset";
 
 /** @type {import('tailwindcss').Config} */
 /* eslint-disable max-len */
@@ -7,7 +7,7 @@ module.exports = {
   content: [
     "./node_modules/examples-common/dist/components/**/*.{js,jsx,ts,tsx}",
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@premieroctet/next-admin/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@village-wellth/next-admin/dist/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {

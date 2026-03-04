@@ -7,7 +7,7 @@ Next-Admin provides adapters for [Next.js](https://nextjs.org), [Remix](https://
 The built-in adapters are accessible through the following import :
 
 ```ts
-import { NextAdminRouterAdapter, NextAdmin, MainLayout } from '@premieroctet/next-admin/adapters/<your-framework>'
+import { NextAdminRouterAdapter, NextAdmin, MainLayout } from '@village-wellth/next-admin/adapters/<your-framework>'
 ```
 
 ## Building your own adapter
@@ -39,9 +39,9 @@ type RouterInterface = {
 Once you created your hook, you can use the `createRouterAdapter` function to create the context.
 
 ```ts
-import { createRouterAdapter } from "@premieroctet/next-admin/adapters/context";
-import { createNextAdminComponents } from "@premieroctet/next-admin/adapters/components";
-import type { RouterInterface } from '@premieroctet/next-admin/adapters/types'
+import { createRouterAdapter } from "@village-wellth/next-admin/adapters/context";
+import { createNextAdminComponents } from "@village-wellth/next-admin/adapters/components";
+import type { RouterInterface } from '@village-wellth/next-admin/adapters/types'
 
 const useMyRouterHook = (): RouterInterface => {
   // My router
@@ -60,4 +60,4 @@ You can now use `NextAdmin` in your admin page. `MainLayout` can be used in [cus
 
 ## Troubleshooting
 
-You can potentially encounter issues with the [new Prisma Client](https://www.prisma.io/docs/orm/prisma-schema/overview/generators#prisma-client-early-access). In previous versions, Prisma used to ship an `index-browser.js` file that would cause no issue if Prisma was bundled in the client bundle. This file does not exist anymore in the new client and importing Prisma in the client bundle can make your app crash. Make sure to have a look at the [examples](https://github.com/premieroctet/next-admin/tree/main/apps) to see how to correctly tackle this issue.
+You can potentially encounter issues with the [new Prisma Client](https://www.prisma.io/docs/orm/prisma-schema/overview/generators#prisma-client-early-access). In previous versions, Prisma used to ship an `index-browser.js` file that would cause no issue if Prisma was bundled in the client bundle. This file does not exist anymore in the new client and importing Prisma in the client bundle can make your app crash. Make sure to have a look at the [examples](https://github.com/Village-Wellth/next-admin/tree/main/apps) to see how to correctly tackle this issue.

@@ -1,5 +1,5 @@
-import { createHandler } from "@premieroctet/next-admin/appHandler";
-import type { PrismaClient } from "@premieroctet/next-admin";
+import { createHandler } from "@village-wellth/next-admin/appHandler";
+import type { PrismaClient } from "@village-wellth/next-admin";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { options } from "../options";
 import prisma from "../prisma";

@@ -10,7 +10,7 @@ import { Callout, FileTree, Tabs } from 'nextra/components'
 
 This page contains code snippets that you can use in your projects. These are not a part of Next Admin, but may be useful for your projects.
 
-Some of the snippets are implemented in the example project. You can check them out in the [example project](https://next-admin-po.vercel.app) or in the [source code](https://github.com/premieroctet/next-admin/tree/main/apps/example).
+Some of the snippets are implemented in the example project. You can check them out in the [example project](https://next-admin-po.vercel.app) or in the [source code](https://github.com/Village-Wellth/next-admin/tree/main/apps/example).
 
 ## Export data
 
@@ -87,8 +87,8 @@ export async function GET() {
 
 There are two example files in the example project:
 
-- [app/api/users/export/route.ts](https://github.com/premieroctet/next-admin/tree/main/apps/example/app/api/users/export/route.ts)
-- [app/api/posts/export/route.ts](https://github.com/premieroctet/next-admin/tree/main/apps/example/app/api/posts/export/route.ts)
+- [app/api/users/export/route.ts](https://github.com/Village-Wellth/next-admin/tree/main/apps/example/app/api/users/export/route.ts)
+- [app/api/posts/export/route.ts](https://github.com/Village-Wellth/next-admin/tree/main/apps/example/app/api/posts/export/route.ts)
 
 ## Add data to formData before submitting
 
@@ -96,8 +96,8 @@ If you want to add data to the form data before submitting it, you can add logic
 
 ```typescript copy filename="actions/nextadmin.ts"
 "use server";
-import { ActionParams } from "@premieroctet/next-admin";
-import { submitForm } from "@premieroctet/next-admin/dist/actions";
+import { ActionParams } from "@village-wellth/next-admin";
+import { submitForm } from "@village-wellth/next-admin/dist/actions";
 
 export const submitFormAction = async (
   params: ActionParams,
@@ -124,7 +124,7 @@ If you want to customize the input form, you can create a custom input component
 
 ```typescript copy filename="/components/inputs/BirthDateInput.tsx"
 "use client";
-import { CustomInputProps } from "@premieroctet/next-admin";
+import { CustomInputProps } from "@village-wellth/next-admin";
 import DateTimePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -163,7 +163,7 @@ The `CustomInputProps` type is provided by Next Admin.
 
 You can find an example of this component in the example project:
 
-- [app/components/inputs/DatePicker.tsx](https://github.com/premieroctet/next-admin/blob/main/apps/example/components/DatePicker.tsx)
+- [app/components/inputs/DatePicker.tsx](https://github.com/Village-Wellth/next-admin/blob/main/apps/example/components/DatePicker.tsx)
 
 # Explicit many-to-many
 

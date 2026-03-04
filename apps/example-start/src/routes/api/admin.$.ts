@@ -1,5 +1,5 @@
-import type { PrismaClient } from "@premieroctet/next-admin";
-import { createHandler } from "@premieroctet/next-admin/appHandler";
+import type { PrismaClient } from "@village-wellth/next-admin";
+import { createHandler } from "@village-wellth/next-admin/appHandler";
 import { createServerFileRoute } from "@tanstack/react-start/server";
 import { options } from "../../options";
 import prisma from "../../prisma";

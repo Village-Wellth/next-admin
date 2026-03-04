@@ -1,8 +1,8 @@
-import type { PrismaClient } from "@premieroctet/next-admin";
+import type { PrismaClient } from "@village-wellth/next-admin";
 import {
   getMainLayoutProps,
   getNextAdminProps,
-} from "@premieroctet/next-admin/pageRouter";
+} from "@village-wellth/next-admin/pageRouter";
 import { createServerFn, json } from "@tanstack/react-start";
 import en from "examples-common/messages/en";
 import { options } from "../options";

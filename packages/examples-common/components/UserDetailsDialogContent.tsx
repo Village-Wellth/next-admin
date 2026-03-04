@@ -1,6 +1,6 @@
 "use client";
-import { ClientActionDialogContentProps } from "@premieroctet/next-admin";
-import { Button } from "@premieroctet/next-admin/components";
+import { ClientActionDialogContentProps } from "@village-wellth/next-admin";
+import { Button } from "@village-wellth/next-admin/components";
 
 type Props = ClientActionDialogContentProps<"User">;
 

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.4.0",
-    "@premieroctet/next-admin": "workspace:*",
+    "@village-wellth/next-admin": "workspace:*",
     "@prisma/client": "catalog:prisma",
     "@tremor/react": "^3.2.2",
     "database": "workspace:*",
