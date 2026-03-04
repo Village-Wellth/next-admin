@@ -165,6 +165,16 @@ This repo uses [changesets](https://github.com/changesets/changesets) for versio
 - `NPM_TOKEN` secret must be set in the GitHub repo (Settings > Secrets > Actions)
 - The token must have read/write access to the `village-wellth` npm organization
 
+### CI / E2E Tests
+
+The e2e workflow runs on PRs and pushes to `main`. There is one **known flaky test** inherited from the upstream repo:
+
+```
+e2e/001-crud.spec.ts:16:5 › crud Post › create Post
+```
+
+This test times out intermittently (>30s) waiting for navigation after saving a Post. It is **not related to our changes** — it's a CI environment timing issue. If you see this single test fail while 18+ others pass, it's safe to ignore. All other tests should pass.
+
 ### Syncing with upstream
 
 To pull in updates from the original `premieroctet/next-admin`:
