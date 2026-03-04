@@ -5,7 +5,7 @@ import {
   type NextAdminJSONSchema,
   type NextAdminJsonSchemaDataType,
   type NextAdminJsonSchemaRelation,
-} from "@premieroctet/next-admin-json-schema";
+} from "@village-wellth/next-admin-json-schema";
 
 type DeepMutableField<T> = {
   -readonly [P in keyof T]: DeepMutableField<T[P]>;

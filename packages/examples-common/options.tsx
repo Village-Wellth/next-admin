@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { NextAdminOptions } from "@premieroctet/next-admin";
+import { NextAdminOptions } from "@village-wellth/next-admin";
 import type { Prisma } from "database/generated/prisma";
 import DatePicker from "./components/DatePicker";
 import PasswordInput from "./components/PasswordInput";

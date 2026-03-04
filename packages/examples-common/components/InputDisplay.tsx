@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomInputProps } from "@premieroctet/next-admin";
+import { CustomInputProps } from "@village-wellth/next-admin";
 
 type Props = CustomInputProps;
 

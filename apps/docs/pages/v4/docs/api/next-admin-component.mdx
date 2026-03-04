@@ -77,7 +77,7 @@ This is an example using the `NextAdmin` component with a custom Dashboard compo
 
     export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       const { nextAdminRouter } = await import(
-        "@premieroctet/next-admin/dist/router"
+        "@village-wellth/next-admin/dist/router"
       );
 
       const adminRouter = await nextAdminRouter(prisma, schema, options);

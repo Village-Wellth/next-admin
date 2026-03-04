@@ -1,9 +1,9 @@
 import type {
   AdminComponentProps,
   PrismaClient,
-} from "@premieroctet/next-admin";
-import { NextAdmin } from "@premieroctet/next-admin/adapters/remix";
-import { getNextAdminProps } from "@premieroctet/next-admin/pageRouter";
+} from "@village-wellth/next-admin";
+import { NextAdmin } from "@village-wellth/next-admin/adapters/remix";
+import { getNextAdminProps } from "@village-wellth/next-admin/pageRouter";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import prisma from "../prisma";

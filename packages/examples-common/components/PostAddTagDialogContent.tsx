@@ -1,6 +1,6 @@
 "use client";
-import { ClientActionDialogContentProps } from "@premieroctet/next-admin";
-import { BaseInput, Button } from "@premieroctet/next-admin/components";
+import { ClientActionDialogContentProps } from "@village-wellth/next-admin";
+import { BaseInput, Button } from "@village-wellth/next-admin/components";
 import { useState } from "react";
 
 type Props = ClientActionDialogContentProps<"User"> & {

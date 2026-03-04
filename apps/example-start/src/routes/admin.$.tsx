@@ -1,5 +1,5 @@
-import { AdminComponentProps } from "@premieroctet/next-admin";
-import { NextAdmin } from "@premieroctet/next-admin/adapters/tanstack-router";
+import { AdminComponentProps } from "@village-wellth/next-admin";
+import { NextAdmin } from "@village-wellth/next-admin/adapters/tanstack-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { Dashboard } from "examples-common/components";
 import { getNextAdminPropsFn } from "../functions/nextadmin";

@@ -10,7 +10,7 @@ export const initGlobals = async () => {
     }
 
     // @ts-expect-error
-    const schemaDef = await import("@premieroctet/next-admin/schema");
+    const schemaDef = await import("@village-wellth/next-admin/schema");
 
     schema = schemaDef.default as Schema;
     resources = Object.keys(schema.definitions).filter((modelName) => {

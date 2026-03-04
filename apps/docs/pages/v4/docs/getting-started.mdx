@@ -18,18 +18,18 @@ To get started with next-admin follow the steps below.
   <Tabs items={["yarn", "npm", "pnpm"]}>
     <Tabs.Tab>
       ```bash copy
-  yarn add @premieroctet/next-admin prisma-json-schema-generator
+  yarn add @village-wellth/next-admin prisma-json-schema-generator
       ```
 
     </Tabs.Tab>
     <Tabs.Tab>
       ```bash copy
-  npm install -S @premieroctet/next-admin prisma-json-schema-generator
+  npm install -S @village-wellth/next-admin prisma-json-schema-generator
       ```
     </Tabs.Tab>
     <Tabs.Tab>
       ```bash copy
-  pnpm install -S @premieroctet/next-admin prisma-json-schema-generator
+  pnpm install -S @village-wellth/next-admin prisma-json-schema-generator
       ```
     </Tabs.Tab>
   </Tabs>
@@ -40,10 +40,10 @@ To get started with next-admin follow the steps below.
   ```typescript copy filename="tailwind.config.js"
   module.exports = {
     content: [
-      "./node_modules/@premieroctet/next-admin/dist/**/*.{js,ts,jsx,tsx}",
+      "./node_modules/@village-wellth/next-admin/dist/**/*.{js,ts,jsx,tsx}",
     ],
     darkMode: "class",
-    presets: [require("@premieroctet/next-admin/dist/preset")],
+    presets: [require("@village-wellth/next-admin/dist/preset")],
   };
   ```
   
@@ -159,7 +159,7 @@ To get started with next-admin follow the steps below.
   First, create an `options.ts` file (see [Options parameter](/v4/docs/api/options) for more details):
       
     ```tsx copy filename="options.ts"
-    import { NextAdminOptions } from "@premieroctet/next-admin";
+    import { NextAdminOptions } from "@village-wellth/next-admin";
 
     export const options: NextAdminOptions = {
       basePath: "/admin",
@@ -171,13 +171,13 @@ To get started with next-admin follow the steps below.
     <Tabs.Tab>
     Then create an `nextadmin.ts` action file:
     ```tsx copy filename="app/actions/nextadmin.ts"
-    import { ActionParams, ModelName } from "@premieroctet/next-admin";
+    import { ActionParams, ModelName } from "@village-wellth/next-admin";
     import {
       SearchPaginatedResourceParams,
       deleteResourceItems,
       searchPaginatedResource,
       submitForm,
-    } from "@premieroctet/next-admin/dist/actions";
+    } from "@village-wellth/next-admin/dist/actions";
     import { options } from "path/to/options";
     import { prisma } from "path/to/prisma";
 
@@ -209,8 +209,8 @@ To get started with next-admin follow the steps below.
     Finally, create the `page.tsx` file:
 
     ```tsx copy filename="app/admin/[[...nextadmin]]/page.tsx"
-    import { NextAdmin } from "@premieroctet/next-admin";
-    import { getPropsFromParams } from "@premieroctet/next-admin/dist/appRouter";
+    import { NextAdmin } from "@village-wellth/next-admin";
+    import { getPropsFromParams } from "@village-wellth/next-admin/dist/appRouter";
     import { prisma } from "path/to/prisma";
     import schema from "path/to/prisma/json-schema/json-schema.json";
     import { submitFormAction, deleteItem, searchResource } from "path/to/actions/nextadmin";
@@ -250,7 +250,7 @@ To get started with next-admin follow the steps below.
 
     ```tsx copy filename="pages/admin/[[...nextadmin]].tsx"
     import { GetServerSideProps, GetServerSidePropsResult } from "next";
-    import { NextAdmin, AdminComponentProps } from "@premieroctet/next-admin";
+    import { NextAdmin, AdminComponentProps } from "@village-wellth/next-admin";
     import schema from "path/to/prisma/json-schema/json-schema.json"; // import the json-schema.json file
     import { options } from "path/to/options";
     import { PrismaClient } from "@prisma/client";
@@ -264,7 +264,7 @@ To get started with next-admin follow the steps below.
 
     export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       const { nextAdminRouter } = await import(
-        "@premieroctet/next-admin/dist/router"
+        "@village-wellth/next-admin/dist/router"
       );
       const adminRouter = await nextAdminRouter(prisma, schema, options)
       return adminRouter.run(req, res) as Promise<

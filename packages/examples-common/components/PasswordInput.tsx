@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { CustomInputProps } from "@premieroctet/next-admin";
+import type { CustomInputProps } from "@village-wellth/next-admin";
 
 const PasswordInput = (props: CustomInputProps) => {
   const [changePassword, setChangePassword] = useState(false);

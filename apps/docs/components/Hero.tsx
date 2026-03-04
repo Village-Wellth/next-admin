@@ -34,7 +34,7 @@ export function Hero() {
             Documentation
           </Link>
           <Link
-            href="https://github.com/premieroctet/next-admin"
+            href="https://github.com/Village-Wellth/next-admin"
             target="_blank"
             className="text-md flex justify-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-semibold text-black transition-colors duration-300 ease-in-out hover:bg-gray-100 dark:fill-white dark:text-white dark:hover:fill-black dark:hover:text-black"
           >

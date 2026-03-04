@@ -1,5 +1,5 @@
 import * as OutlineIcons from "@heroicons/react/24/outline";
-import type { NextAdminJSONSchema } from "@premieroctet/next-admin-json-schema";
+import type { NextAdminJSONSchema } from "@village-wellth/next-admin-json-schema";
 import type { NextApiRequest } from "next";
 import type React from "react";
 import type { ChangeEvent, ComponentProps, ReactNode } from "react";
@@ -469,7 +469,7 @@ export type ListOptions<T extends ModelName> = {
    * an array of searchable fields.
    * @default all scalar
    */
-  search?: Leaves<NestableField<Prisma.TypeMap["model"][T]["payload"]>>[];
+  search?: Leaves<NestableField<Prisma.TypeMap["model"][T]["payload"], 2>>[];
   /**
    * an array of fields that are copyable into the clipboard.
    * @default none

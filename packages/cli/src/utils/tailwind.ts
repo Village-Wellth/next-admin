@@ -13,7 +13,7 @@ export const addTailwindCondig = async (
 ) => {
   if (isAtLeastV4) {
     const { stdout: libPath } =
-      await execa`node -p path.dirname(require.resolve('@premieroctet/next-admin'))`;
+      await execa`node -p path.dirname(require.resolve('@village-wellth/next-admin'))`;
 
     const content = `
 /** @type {import('tailwindcss').Config} */
@@ -24,7 +24,7 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {},
-  presets: [require("@premieroctet/next-admin/preset")],
+  presets: [require("@village-wellth/next-admin/preset")],
 };
   `;
 
@@ -36,8 +36,8 @@ module.exports = {
 
   const adminCssContent = isAtLeastV4
     ? `@import "tailwindcss";
-@import "@premieroctet/next-admin/theme";
-@source "./node_modules/@premieroctet/next-admin/dist";`
+@import "@village-wellth/next-admin/theme";
+@source "./node_modules/@village-wellth/next-admin/dist";`
     : `@config "./${NEXTADMIN_TAILWIND_CONFIG_FILENAME}";
 
 @tailwind base;

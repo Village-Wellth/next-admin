@@ -13,7 +13,7 @@ npx next-admin-cli --help
 If the CLI is not installed :
 
 ```bash
-npx @premieroctet/next-admin-cli --help
+npx @village-wellth/next-admin-cli --help
 ```
 
 ## Available commands

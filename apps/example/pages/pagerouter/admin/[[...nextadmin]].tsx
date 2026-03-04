@@ -1,10 +1,10 @@
 import type {
   AdminComponentProps,
   PrismaClient,
-} from "@premieroctet/next-admin";
-import { NextAdmin } from "@premieroctet/next-admin/adapters/next";
-import PageLoader from "@premieroctet/next-admin/pageLoader";
-import { getNextAdminProps } from "@premieroctet/next-admin/pageRouter";
+} from "@village-wellth/next-admin";
+import { NextAdmin } from "@village-wellth/next-admin/adapters/next";
+import PageLoader from "@village-wellth/next-admin/pageLoader";
+import { getNextAdminProps } from "@village-wellth/next-admin/pageRouter";
 import en from "examples-common/messages/en";
 import { GetServerSideProps } from "next";
 import { options as appOptions } from "../../../options";

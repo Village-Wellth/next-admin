@@ -91,7 +91,7 @@ If you want to contribute on the current major version, you can create a PR on t
 
 > Note: Make sure that the branch was created and updated from the `main` branch.
 
-![schema](https://github.com/premieroctet/next-admin/assets/7901622/b9f87c18-6fce-4e7d-80ab-777cbeaba158)
+![schema](https://github.com/Village-Wellth/next-admin/assets/7901622/b9f87c18-6fce-4e7d-80ab-777cbeaba158)
 
 #### Fixing an old major release
 
@@ -99,7 +99,7 @@ If you want to fix a previous major version, you can create a PR on the relative
 
 > Note: Make sure that the branch was created from the latest release of the major version you want to fix.
 
-![schema-fix](https://github.com/premieroctet/next-admin/assets/7901622/18d463a2-7bea-4a62-bedb-968c58bc0cd2)
+![schema-fix](https://github.com/Village-Wellth/next-admin/assets/7901622/18d463a2-7bea-4a62-bedb-968c58bc0cd2)
 
 Once a fix has been released, you can cherry-pick the fix on the `develop` branch if that fix is still relevant.
 

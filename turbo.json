@@ -11,11 +11,11 @@
   ],
   "tasks": {
     "start": {},
-    "@premieroctet/next-admin#build": {
+    "@village-wellth/next-admin#build": {
       "dependsOn": ["database#generate:client-only"]
     },
     "database#generate:client-only": {
-      "dependsOn": ["@premieroctet/next-admin-generator-prisma#build"]
+      "dependsOn": ["@village-wellth/next-admin-generator-prisma#build"]
     },
     "database#build": {
       "dependsOn": ["database#generate"]

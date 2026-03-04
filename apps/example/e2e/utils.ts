@@ -1,5 +1,5 @@
 import { Page, expect } from "@playwright/test";
-import { ModelName } from "@premieroctet/next-admin";
+import { ModelName } from "@village-wellth/next-admin";
 import { models } from "./001-crud.spec";
 
 type DataTest = {

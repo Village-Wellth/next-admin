@@ -1,7 +1,7 @@
 # Next Admin
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/npm/v/@premieroctet/next-admin/latest)](https://www.npmjs.com/package/@premieroctet/next-admin)
+[![Version](https://img.shields.io/npm/v/@village-wellth/next-admin/latest)](https://www.npmjs.com/package/@village-wellth/next-admin)
 
 `next-admin` provides a customizable and turnkey admin dashboard for applications built with Next.js and powered by the Prisma ORM. It aims to simplify the development process by providing a turnkey admin system that can be easily integrated into your project.
 
@@ -29,7 +29,7 @@
 ### With the CLI
 
 ```shell copy
-npx @premieroctet/next-admin-cli@latest init
+npx @village-wellth/next-admin-cli@latest init
 ```
 
 ### Manually
@@ -37,7 +37,7 @@ npx @premieroctet/next-admin-cli@latest init
 To install the library, run the following command:
 
 ```shell copy
-yarn add @premieroctet/next-admin @premieroctet/next-admin-generator-prisma
+yarn add @village-wellth/next-admin @village-wellth/next-admin-generator-prisma
 ```
 
 ## Documentation
@@ -62,7 +62,7 @@ An example of `next-admin` options:
 
 ```tsx
 // app/admin/options.ts
-import { NextAdminOptions } from "@premieroctet/next-admin";
+import { NextAdminOptions } from "@village-wellth/next-admin";
 
 export const options: NextAdminOptions = {
   title: "⚡️ My Admin Page",
@@ -134,7 +134,7 @@ For detailed documentation, please refer to the [documentation](https://next-adm
 
 ## 🚀 Demonstration
 
-You can find the library code in the [next-admin](https://github.com/premieroctet/next-admin) repository.
+You can find the library code in the [next-admin](https://github.com/Village-Wellth/next-admin) repository.
 
 Also you can find a deployed version of the library [here](https://next-admin-po.vercel.app/).
 

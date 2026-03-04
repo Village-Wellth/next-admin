@@ -14,6 +14,6 @@ export default defineConfig({
   ],
   ssr: {
     noExternal: ["react-datepicker", "database"],
-    external: ["@premieroctet/next-admin"],
+    external: ["@village-wellth/next-admin"],
   },
 });

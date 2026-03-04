@@ -1,6 +1,9 @@
 {
-  "name": "@premieroctet/next-admin-generator-prisma",
+  "name": "@village-wellth/next-admin-generator-prisma",
   "version": "1.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Prisma generator for Next-Admin",
   "bin": "dist/index.js",
   "main": "dist/index.js",
@@ -14,16 +17,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/premieroctet/next-admin.git",
+    "url": "https://github.com/Village-Wellth/next-admin.git",
     "directory": "packages/generator-prisma"
   },
   "bugs": {
-    "url": "https://github.com/premieroctet/next-admin/issues"
+    "url": "https://github.com/Village-Wellth/next-admin/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/premieroctet/next-admin/blob/main/LICENSE"
+      "url": "https://github.com/Village-Wellth/next-admin/blob/main/LICENSE"
     }
   ],
   "scripts": {
@@ -33,7 +36,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@premieroctet/next-admin-json-schema": "workspace:^",
+    "@village-wellth/next-admin-json-schema": "workspace:^",
     "@prisma/generator-helper": "^5.20.0",
     "@prisma/internals": "^5.20.0",
     "esbuild": "^0.24.0",

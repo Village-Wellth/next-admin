@@ -1,6 +1,6 @@
-import { PromisePageProps } from "@premieroctet/next-admin";
-import { MainLayout } from "@premieroctet/next-admin/adapters/next";
-import { getMainLayoutProps } from "@premieroctet/next-admin/appRouter";
+import { PromisePageProps } from "@village-wellth/next-admin";
+import { MainLayout } from "@village-wellth/next-admin/adapters/next";
+import { getMainLayoutProps } from "@village-wellth/next-admin/appRouter";
 import { CustomPage as CustomPageComponent } from "examples-common/components";
 import { getMessages } from "next-intl/server";
 import { options } from "../../../../options";
