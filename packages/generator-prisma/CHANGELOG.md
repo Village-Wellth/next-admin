@@ -1,5 +1,13 @@
 # @village-wellth/next-admin-generator-prisma
 
+## 1.1.1
+
+### Patch Changes
+
+- [687500a](https://github.com/Village-Wellth/next-admin/commit/687500a1a6981757cac861c6b7c8b8638a6851b3): Fix performance issue where all sub-relations were eagerly loaded when a relation field is in the display array, causing slow queries and Vercel OOM crashes. Reduce search type recursion depth from 4 to 2 to prevent TypeScript ts2590 error with large schemas.
+- Updated dependencies [[687500a](https://github.com/Village-Wellth/next-admin/commit/687500a1a6981757cac861c6b7c8b8638a6851b3)]
+  - @village-wellth/next-admin-json-schema@0.0.2
+
 ## 1.1.0
 
 ### Minor Changes
