@@ -1,6 +1,6 @@
 {
   "name": "@village-wellth/next-admin",
-  "version": "8.5.0",
+  "version": "8.5.1",
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com"
