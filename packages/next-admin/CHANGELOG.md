@@ -1,5 +1,11 @@
 # @village-wellth/next-admin
 
+## 8.5.1
+
+### Patch Changes
+
+- [c23847d](https://github.com/Village-Wellth/next-admin/commit/c23847d388d8b565ee00438a46a6e4ad3a73a5fe): Fix TypeScript typecheck error in applyIncludes function (TS7053: no index signature)
+
 ## 8.5.0
 
 ### Minor Changes
